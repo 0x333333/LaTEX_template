@@ -24,13 +24,12 @@
 
 \NeedsTeXFormat{LaTeX2e}
 \ProvidesClass{tccv}
-              [2012/11/09 v1.0
- Two Column Curriculum Vitae]
+              []
 
 \LoadClass[10pt]{scrartcl}
 
 \setcounter{secnumdepth}{-1}
-\RequirePackage[hmargin=1.25cm,vmargin=1.25cm,twocolumn,columnsep=1.25cm]{geometry}
+\RequirePackage[hmargin=1cm,vmargin=1cm,twocolumn,columnsep=1cm]{geometry}
 \RequirePackage{bookman,etoolbox,hyperref,marvosym,needspace,tabularx,xcolor}
 
 % Capitalize words of at least a minimum length (default to 3 chars).
@@ -46,14 +45,14 @@
     % Fails gracefully if not in LuaLaTeX
     \providecommand\directlua[1]{#2}%
     \directlua{%
-	local minlen=tonumber("#1")
-	local src="\luaescapestring{\unexpanded{#2}}"
-	local dst={}
-	for w in src:gmatch('[^\string\%s]+') do
-	    if w:len() >= minlen then w = w:sub(1,1):upper()..w:sub(2) end
-	    table.insert(dst, w)
-	end
-	tex.print(dst)}}
+    local minlen=tonumber("#1")
+    local src="\luaescapestring{\unexpanded{#2}}"
+    local dst={}
+    for w in src:gmatch('[^\string\%s]+') do
+        if w:len() >= minlen then w = w:sub(1,1):upper()..w:sub(2) end
+        table.insert(dst, w)
+    end
+    tex.print(dst)}}
 
 \pagestyle{empty}
 \setlength\parindent{0pt}
@@ -70,10 +69,10 @@
 \renewcommand\part[1]{%
     \twocolumn[%
     \begin{center}
-	\vskip-\lastskip%
-	{\usekomafont{part} #1} \medskip\\
-	{\fontfamily{pzc}\selectfont\Huge Curriculum vitae}
-	\bigskip
+    \vskip-\lastskip%
+    {\usekomafont{part} #1} \medskip\\
+    {\fontfamily{pzc}\selectfont\LARGE Curriculum vitae}
+    \bigskip
     \end{center}]}
 
 % Overrides the \section command to capitalize every
@@ -106,10 +105,10 @@
 %          {address}{phone number}{email}
 % ]|
 \newcommand\personal[4][]{%
-    \needspace{0.5\textheight}%
+    \needspace{0.3\textheight}%
     \newdimen\boxwidth%
     \boxwidth=\dimexpr\linewidth-2\fboxsep\relax%
-    \colorbox[HTML]{F5DD9D}{%
+    \colorbox[HTML]{FDF8EA}{%
     \begin{tabularx}{\boxwidth}{c|X}
     \Writinghand & {#2}\smallskip\\
     \Telefon     & {#3}\smallskip\\
@@ -128,12 +127,12 @@
 \newenvironment{eventlist}{%
     \newcommand*\inskip{}
     \renewcommand\item[3]{%
-	\inskip%
-	{\raggedleft\sc ##1\\[1pt]}
-	{##2}\\[2pt]
-	{\Large\it ##3}
-	\medskip
-	\renewcommand\inskip{\bigskip}}}
+    \inskip%
+    {\raggedleft\sc ##1\\[1pt]}
+    {##2}\\[2pt]
+    {\Large\it ##3}
+    \medskip
+    \renewcommand\inskip{\bigskip}}}
     {\bigskip}
 
 % Use only \item inside this environment: no other macros
@@ -144,9 +143,9 @@
 % ]|
 \newenvironment{yearlist}{%
     \renewcommand\item[4][]{%
-	{\sc ##2} & {\bfseries ##3} \\
-	\ifstrempty{##1}{}{& {\sc ##1} \\}
-	& {\it ##4}\medskip\\}
+    {\sc ##2} & {\bfseries ##3} \\
+    \ifstrempty{##1}{}{& {\sc ##1} \\}
+    & {\it ##4}\medskip\\}
     \tabularx{\linewidth}{rX}}
     {\endtabularx}
 
@@ -161,7 +160,7 @@
     \newdimen\unbaseline
     \unbaseline=\dimexpr-\baselinestretch\baselineskip\relax
     \renewcommand\item[2]{%
-	\textsc{##1} & {\raggedright ##2\medskip\\}\\[\unbaseline]}
+    \textsc{##1} & {\raggedright ##2\medskip\\}\\[\unbaseline]}
     \tabularx{\linewidth}{rX}}
     {\endtabularx}
 %%
